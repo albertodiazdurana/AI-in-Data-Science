@@ -1,3 +1,9 @@
+### [2026-02-22] First session: research and plan before implementation
+
+**Type:** Action Item
+**Priority:** High
+**Source:** DSM Central
+
 This is a DSM ecosystem project. Read `.claude/CLAUDE.md` for methodology
 and interaction protocols.
 
@@ -12,4 +18,4 @@ Based on the preliminary plan:
 3. Present the plan for my review and approval before starting
    implementation.
 
-Reference materials are in `_reference/` (class notes and project description).
+Reference materials are in `_reference/` (class notes, project description).
