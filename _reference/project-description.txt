@@ -1,0 +1,68 @@
+Project: Predicting House Sale Prices with Automation-Driven ML
+ 
+You went over the automation techniques for each step of a typical machine learning project. Let’s now combine all of the tools you’ve learned and use them to tackle a real-life problem.
+ 
+This is the first of three AI Enhanced Productivity projects. Each project explores a different way in which AI tools can enhance analytical productivity.
+Introducing the Project
+Your task will be similar to what you did in the sprint. In this project, you will predict house sale prices using a real-world dataset, with a strong emphasis on automating as much of the machine learning workflow as possible.
+
+notion image
+You’ll apply the tools you've explored throughout the course:
+Sweetviz or YData Profiling for automated EDA
+Featuretools and/or Autofeat for feature engineering
+H2O AutoML or/and PyCaret to build, tune, and evaluate regression models
+This project gives you the opportunity to see how automation can speed up analysis, reduce manual effort, and support faster experimentation.
+Before getting started, let’s take a closer look at the data you will be working with.
+ 
+The Dataset: Ames Housing
+You’ll work with the Ames Housing dataset, which contains detailed records of nearly 1,500 residential homes in Ames, Iowa. It includes:
+Building and zoning features (e.g., number of bedrooms, garage type)
+Location information (neighborhood, street, etc.)
+Quality and condition ratings (interior finish, kitchen quality)
+Sale-related attributes (sale condition, sale type)
+The target Variable is SalePrice — the price a house was sold for. It provides a realistic challenge and requires thoughtful preprocessing and feature handling — all of which can be automated with the tools you’ve learned.
+Next, let’s clearly define the steps that you need to go over!
+ 
+What You’ll Do
+As it was mentioned, we want you to go over the typical machine learning project workflow but integrating as much automation tools as possible. To be concrete, we want to ask you to:
+Perform automated EDA to explore data structure and identify issues
+Engineer new features using either autofeat, featuretools, or both
+Build regression models using H2O AutoML or pycaret
+Evaluate your models and reflect on the impact of automation in your pipeline
+
+Focus not only on results, but also on how automation affects your workflow and decisions.
+Project artifacts
+
+As part of this project, you are expected to work in a Google Colab notebook and produce a set of technical and analytical artifacts that document your workflow, reasoning, and outcomes.
+Your notebook should have:
+1. Technical artifacts
+Automated EDA generated using Sweetviz or YData Profiling
+Automatically generated features created with Autofeat and/or Featuretools
+Model training, tuning, and evaluation using H2O AutoML or PyCaret
+Relevant outputs such as leaderboards, metrics, and model comparisons
+2. Analytical reasoning
+How automated EDA informed your understanding of the dataset
+Why certain automatically generated features were relevant or useful
+How model performance was evaluated and compared
+Any assumptions or decisions made during the automated workflow
+3. Reflections on automation
+What automation improved or simplified in your workflow
+Where automation introduced limitations or required human judgment
+Key insights gained from relying on automated ML tools
+Written explanations can be included directly in the notebook using markdown cells.
+The emphasis is on clarity of reasoning and insight, not on code volume or visual polish.
+ 
+Presentation context
+This project will be presented during a live presentation after all three AI Enhanced Productivity projects are completed.
+During the presentation, you will explain:
+The problem addressed in this project
+How automation tools were used
+What results were achieved
+What you learned about the strengths and limits of automated ML workflows
+The presentation focuses on reasoning, insight, and productivity impact, not on detailed code walkthroughs.
+ 
+Quality expectations
+Your workflow should be logically structured and reproducible
+Automated tools should be used correctly and intentionally
+Model evaluation should be clearly interpreted
+Reflections should demonstrate understanding, not just tool usage
