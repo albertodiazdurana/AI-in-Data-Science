@@ -66,3 +66,9 @@ Your workflow should be logically structured and reproducible
 Automated tools should be used correctly and intentionally
 Model evaluation should be clearly interpreted
 Reflections should demonstrate understanding, not just tool usage
+
+Let’s Get Things done
+How can we get started? Well, basically via 2 simple steps:
+Create a Google Colab that you’ll be working in.
+Here is how you can do it
+Download the dataset from our Google Drive: https://drive.google.com/file/d/1-KhJhFnj5vmESlknOtpra-2E86_thEWO/view?usp=sharing

@@ -7,7 +7,7 @@
 This is a DSM ecosystem project. Read `.claude/CLAUDE.md` for methodology
 and interaction protocols.
 
-Read the preliminary plan in `docs/research/preliminary-plan.md` to understand
+Read the preliminary plan in `docs/research/w2-preliminary-plan.md` to understand
 the project goals and initial design direction.
 
 Based on the preliminary plan:

@@ -1,0 +1,74 @@
+Project: Understanding Customer Sentiment on Twitter
+Ok, we’ve learned a lot in this sprint. Let’s sum everything up in a single project where you will explore the Customer Support on Twitter dataset which is a rich, real-world resource for studying how people express feedback, frustration, and gratitude when interacting with companies on social media.
+notion image
+You will use a modern, multi-step AI workflow to deeply understand and analyze the data:
+Start with Gemini to automatically explore and summarize the dataset.
+Continue with AutoViz to understand the data visually.
+Conclude with a Hugging Face model to analyze sentiment in the customer tweets.
+As for the very first step, let’s talk more deeply about the data we are going to work with!
+Dataset: Customer Support on Twitter
+As we have already mentioned above, the Customer Support on Twitter dataset is a large, modern corpus of tweets and replies between customers and support agents. This dataset has three major advantages over other conversational datasets:
+Focused: The conversations revolve around real-world problems people want solved — lost luggage, billing issues, canceled flights — giving the data clear purpose and structure.
+Natural: The language is modern and organically written by people from various backgrounds. It reflects how customers really communicate online today.
+Succinct: Because tweets are brief, responses are more authentic and less scripted. This helps models learn more naturally and also supports efficient processing.
+Next, let’s briefly discuss the content of the data we are going to work with. It contains multiple columns. Below there are the column names and the corresponding description for them:  
+tweet_id
+A unique, anonymized ID for the Tweet. Referenced by response_tweet_id and in_response_to_tweet_id.
+author_id
+A unique, anonymized user ID. @s in the dataset have been replaced with their associated anonymized user ID.
+inbound
+Whether the tweet is "inbound" to a company doing customer support on Twitter. This feature is useful when re-organizing data for training conversational models.
+created_at
+Date and time when the tweet was sent.
+text
+Tweet content. Sensitive information like phone numbers and email addresses are replaced with mask values like __email__.
+response_tweet_id
+IDs of tweets that are responses to this tweet, comma-separated.
+in_response_to_tweet_id
+ID of the tweet this tweet is in response to, if any.
+To download the data, click on this link: https://drive.google.com/file/d/1dvTN_tIwqd6eqncyWGzpTN788klfhKpR/view?usp=sharing.
+Your Three Main Tasks
+Ok, now we want to explicitly talk about the 3 key project steps we want you to go over!
+1. Use Gemini for Initial Exploration
+Start your project by uploading the dataset into Google Colab and using Gemini’s built-in AI assistant to understand the file. Ask Gemini to describe the dataset and summarize key characteristics such as column names, data types, and missing values.
+This automated analysis will help you quickly grasp the structure of the dataset and decide which columns are most relevant to your goals.
+2. Visualize the Data with AutoViz
+Next, shift your focus to visual data understanding. With AutoViz, you can generate plots and charts that reveal some of the key insights about the data. Compare the outputs of AutoViz to what Gemini previously suggested.
+3. Analyze Sentiment Using Hugging Face LLMs
+Finally, apply a Large Language Model (LLM) from Hugging Face to analyze the text column of the dataset. This column contains the full tweet from the customer. You’ll use the model to evaluate the sentiment of the messages.
+You can use either:
+The Hugging Face Transformers library, or
+The Inference API, which allows access without downloading models.
+ 
+Project artifacts
+As part of this project, you are expected to work in a Google Colab notebook and produce analytical artifacts that document both results and reasoning.
+Your notebook should include:
+ 
+1. Technical artifacts
+Gemini-generated dataset summaries or exploration outputs
+AutoViz visualizations highlighting key patterns
+Sentiment analysis outputs produced with a Hugging Face model
+2. Analytical reasoning
+How Gemini shaped your initial understanding and analytical direction
+What AutoViz revealed that was not obvious from text summaries alone
+How sentiment results complemented or challenged earlier insights
+3. Reflections on AI-assisted analysis
+Where AI tools accelerated exploration or reduced manual effort
+Where human interpretation was still essential
+Strengths and limitations of using LLMs for sentiment analysis
+Written explanations should be included as markdown cells alongside outputs.
+The goal is to demonstrate insight, judgment, and effective tool use, not exhaustive analysis.
+ 
+Presentation context
+This project will be presented during a live presentation session after all three AI Enhanced Productivity projects are completed.
+During the presentation, you will explain:
+The analytical goal of this project
+How Gemini, AutoViz, and language models were used
+Key sentiment insights uncovered
+What you learned about using AI for text-based analysis
+The presentation will focus on interpretation and productivity gains, not technical implementation details.
+Quality expectations
+AI tools should be used purposefully, not superficially
+Outputs must be clearly interpreted and contextualized
+Reflections should show understanding of both data and tools
+Insights should be grounded in evidence produced during the analysis
