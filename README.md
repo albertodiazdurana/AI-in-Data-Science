@@ -54,6 +54,23 @@ When data science tools promise to automate EDA, feature engineering, and model 
 2. **Model selection delivered 30x more improvement than feature engineering.** Switching from LinearRegression to GradientBoosting mattered far more than adding engineered features.
 3. **Plans should match your certainty level.** A 20-cell outline written before loading data became wrong after EDA. Phase-based objectives adapted; cell-level prescriptions did not.
 
+## W2 Conclusions
+
+**What automation delivered:**
+PyCaret's automated model selection was the clear winner, improving R² by +0.12 over the manual baseline with three lines of code. It compared 15 regression models, tuned the best (GradientBoosting), and handled categorical encoding internally; replicating this manually would have required significant effort for each model configuration.
+
+**Where automation fell short:**
+Automated EDA (YData Profiling, SweetViz) generated comprehensive HTML reports across 82 features, but the volume made them impractical to analyze systematically. Three focused cells, one for missing values grouped by strategy, one for target correlations with anomaly flags, one for near-zero-variance detection, drove every preprocessing decision. The reports served as reference material, not as analysis. Autofeat's 10 engineered features (polynomial transforms) improved R² by only +0.004 with LinearRegression; the nonlinear transforms needed a nonlinear model to add value. Featuretools generated 992 unfiltered features from a flat table, confirming it is designed for relational data, not single-table regression.
+
+**The value of running both manual and automated approaches:**
+Implementing both conventional baselines alongside automated tools does not drastically increase effort, and the comparison provides a concrete reference point. Without the manual LinearRegression baseline (R² = 0.80), PyCaret's result (R² = 0.93) would be a number without context. The side-by-side comparison is what makes the automation's contribution measurable and the conclusions credible. The cost of building a baseline is low; the insight it enables is high.
+
+**What required human judgment:**
+Interpreting missing values as structural absences (no pool, no garage) rather than data gaps. Identifying Garage Yr Blt = 2207 as a data entry error. Deciding which near-zero-variance features to drop versus keep (Kitchen AbvGr at 95.4% dominant value still carries signal). Recognizing that SHAP's top feature (Overall Qual) aligned with EDA correlations, validating the model learned real patterns.
+
+**Presentation takeaway:**
+Automation's value is uneven. Model selection automation (PyCaret) delivered a 30x larger improvement than feature engineering automation (Autofeat). Automated EDA tools are better treated as reference generators than as analysis tools. The productivity gain comes from knowing which automation to trust, where human judgment remains essential, and having a manual baseline to make the comparison meaningful.
+
 ## Project Structure
 
 ```
