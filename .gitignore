@@ -18,6 +18,9 @@ build/
 .venv/
 venv/
 
+# Reference materials (course content, not project output)
+_reference/
+
 # Data (large files)
 data/raw/*.csv
 data/raw/*.zip
