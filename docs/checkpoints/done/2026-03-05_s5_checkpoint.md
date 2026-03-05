@@ -1,3 +1,5 @@
+**Consumed at:** Session 6 start (2026-03-05)
+
 # Session 5 Checkpoint
 
 **Date:** 2026-03-05

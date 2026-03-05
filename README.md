@@ -31,10 +31,11 @@ When data science tools promise to automate EDA, feature engineering, and model 
 | Featuretools (992 features) | Autofeat (10 curated features) | Not recommended. Generated 992 unfiltered features from a flat table with no built-in selection; designed for relational data, poor fit here |
 | **W2: Model Selection** | | |
 | PyCaret GBR (automated) | scikit-learn LinearRegression (manual) | High value. R² jumped +0.12 (0.80 → 0.93), RMSE dropped $15,480; 3 lines of code to compare 15 models and tune the winner |
-| **W3: Analysis** | | |
-| Gemini | Manual pandas exploration | *TBD* |
-| AutoViz | matplotlib/seaborn | *TBD* |
-| Hugging Face Transformers | Labeled data validation | *TBD* |
+| **W3: Exploration** | | |
+| Gemini (API) | Manual pandas exploration | Moderate value. Produced a structured dataset overview in a single prompt; useful for initial orientation on unfamiliar data, but suggestions were generic |
+| AutoViz | matplotlib/seaborn | Low value for text data. Built for numeric tabular datasets; on text-heavy data it functions as a basic data quality checker, not a visualization tool |
+| **W3: Sentiment** | | |
+| Hugging Face Transformers (RoBERTa) | Classical NLP pipeline (TF-IDF + classifier) | High value. Pre-trained tweet-specific model classified 49 tweets with no labeled data and minimal preprocessing; confidence scores enable quality assessment |
 | **W4: Explainability** | | |
 | SHAP, LIME | Cross-method agreement | *TBD* |
 
@@ -71,11 +72,43 @@ Interpreting missing values as structural absences (no pool, no garage) rather t
 **Presentation takeaway:**
 Automation's value is uneven. Model selection automation (PyCaret) delivered a 30x larger improvement than feature engineering automation (Autofeat). Automated EDA tools are better treated as reference generators than as analysis tools. The productivity gain comes from knowing which automation to trust, where human judgment remains essential, and having a manual baseline to make the comparison meaningful.
 
+## W3 Results
+
+| Sentiment | Count | Share | Mean Confidence |
+|-----------|-------|-------|-----------------|
+| Negative  | 27    | 55%   | 0.83            |
+| Neutral   | 14    | 29%   | 0.72            |
+| Positive  | 8     | 16%   | 0.75            |
+
+**Key finding:** The pre-trained Hugging Face pipeline (`cardiffnlp/twitter-roberta-base-sentiment-latest`) delivered production-quality sentiment classification with zero labeled training data. The tool closest to the analytical goal produced the most value; generic exploration tools (Gemini, AutoViz) helped but were more substitutable.
+
+## W3 Key Findings
+
+1. **Pre-trained models eliminate the labeling bottleneck.** A RoBERTa model fine-tuned on tweets classified 49 customer messages with 0.78 mean confidence, no labeled training data needed. Classical NLP pipelines require labeled datasets, tokenization, stemming, and stop-word removal before analysis can begin.
+2. **Tool value correlates with task specificity.** Hugging Face (sentiment-specific) delivered the core result. Gemini (general exploration) provided useful orientation but generic suggestions. AutoViz (built for numeric data) added little on a text-heavy dataset.
+3. **Environment setup is the real time cost.** API quota issues, deprecated model names, and library version conflicts consumed more time than the analysis itself. Each AI tool works well in isolation; combining them multiplies the integration surface area.
+
+## W3 Conclusions
+
+**What AI-assisted analysis delivered:**
+Hugging Face Transformers was the clear winner. A single pipeline call loaded a tweet-specific RoBERTa model, classified all 49 inbound tweets into three sentiment categories, and returned confidence scores, all without labeled data, custom preprocessing, or model training. The results were immediately interpretable: 55% negative (expected for support), highest confidence on complaints (0.83), and clear company-level patterns (AppleSupport heavily negative, SpotifyCares positive-leaning).
+
+**Where AI-assisted analysis fell short:**
+Gemini's dataset exploration was competent but generic. Everything it identified (threading columns, datetime conversion needs, inbound/outbound segmentation) could have been found with standard pandas inspection. Its suggestions applied to any customer support dataset, not specifically to this one. AutoViz was a poor fit for text data: with only two derived numeric features, it produced minimal visualization and spent most of its value on data quality checks that `df.duplicated().sum()` would have answered faster.
+
+**The productivity pattern:**
+The W2 lesson was that model selection automation delivers more value than feature engineering automation. The W3 lesson is analogous: the tool closest to the analytical goal delivers the most value. Generic exploration tools save time on orientation but do not produce analytical results. The main time investment was not analysis but infrastructure: resolving API quotas, model deprecation, and library compatibility. This is the realistic cost of multi-tool AI workflows.
+
+## W4 Results
+
+*Coming soon: SHAP and LIME explainability on the Heart Disease UCI dataset.*
+
 ## Project Structure
 
 ```
 ├── notebooks/
-│   └── w2_house_prices.ipynb        # W2 notebook (Colab-compatible)
+│   ├── w2_house_prices.ipynb        # W2 notebook (Colab-compatible)
+│   └── w3_customer_sentiment.ipynb  # W3 notebook (Colab-compatible)
 ├── data/                            # Datasets (local, not committed)
 ├── docs/
 │   ├── plans/                       # Phase-based project plans
@@ -95,10 +128,10 @@ Automation's value is uneven. Model selection automation (PyCaret) delivered a 3
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-jupyter notebook notebooks/w2_house_prices.ipynb
+jupyter notebook notebooks/
 ```
 
-**Data:** Ames Housing dataset downloads automatically from Google Drive on first run if `data/AmesHousing.csv` is not present.
+**Data:** Both datasets download automatically from Google Drive on first run. W3 requires a `GOOGLE_API_KEY` in `.env` or Colab Secrets for the Gemini API cell.
 
 ## Evaluation
 
