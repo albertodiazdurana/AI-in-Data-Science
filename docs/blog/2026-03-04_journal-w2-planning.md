@@ -1,6 +1,6 @@
 # Planning an Automation-Driven ML Project: Tool Research Before Code
 
-*Part 1 of a 3-part series on AI-enhanced productivity in data science*
+*Part 1 of the AI-enhanced productivity series: Automation, Sentiment, and Explainability*
 
 ---
 

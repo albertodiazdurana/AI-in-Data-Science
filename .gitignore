@@ -22,8 +22,7 @@ venv/
 _reference/
 
 # Data (large files)
-data/raw/*.csv
-data/raw/*.zip
+data/
 *.h5
 *.pkl
 

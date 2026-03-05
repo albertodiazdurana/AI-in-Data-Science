@@ -1,6 +1,6 @@
 # AI-Assisted Sentiment Analysis: What Gemini, AutoViz, and Hugging Face Actually Deliver
 
-*Part 3 of a 3-part series on AI-enhanced productivity in data science*
+*Part 3 of the AI-enhanced productivity series: Automation, Sentiment, and Explainability*
 
 ---
 
@@ -66,12 +66,24 @@ The three tools form a clear value gradient:
 
 The W2 lesson was that model selection automation delivers more value than feature engineering automation. The W3 lesson is similar: the tool closest to the analytical goal (sentiment classification) delivers the most value. Tools aimed at generic exploration (Gemini, AutoViz) help, but their contribution is smaller and more substitutable.
 
-## What Comes Next: The Challenge Notebook
+## The Challenge: What Changes at Scale
 
-This analysis used a 93-row sample and a single pre-trained model. The planned challenge notebook will work with the full 2.8 million tweet corpus from Kaggle and introduce a comparison that this small sample could not support.
+The assignment used 93 rows. The full Customer Support on Twitter dataset contains 2.8 million tweets, roughly 1.5 million inbound. The challenge notebook tested whether the findings hold when the sample grows by two orders of magnitude.
 
-In a [previous project on disaster tweet classification](https://github.com/albertodiazdurana/tfidf-to-transformers-with-disaster-tweets/blob/main/docs/blog-post-draft.md), I found that TF-IDF with Logistic Regression nearly matched Sentence Transformers (F1 = 0.764 vs 0.770), a result that challenged assumptions about which tools are worth the complexity. The challenge notebook will apply the same thinking to sentiment: compare the pre-trained Hugging Face pipeline against a TF-IDF + ML classifier trained on labeled sentiment data. If the pattern holds, a simple bag-of-words model with proper feature engineering may perform surprisingly well against a transformer, especially when the task is classification rather than comprehension.
+Two runs tested convergence: 10K and 50K random samples of inbound tweets, both processed with GPU batching (batch_size=64) on a Quadro T1000 at a steady 51 tweets/sec.
 
-The question is whether the convenience of a zero-label pre-trained pipeline justifies its use when a labeled training set is available and a classical approach might match or exceed its accuracy. Scale will also matter: processing 2.8 million tweets with a transformer model requires GPU batching and memory management that TF-IDF sidesteps entirely. The challenge notebook is where tool evaluation meets engineering tradeoffs.
+| | W3 (93 rows) | 10K | 50K |
+|---|---|---|---|
+| Negative | 55% | 51.6% | 52.1% |
+| Neutral | 29% | 33.4% | 32.9% |
+| Positive | 16% | 15.0% | 15.1% |
+| Confidence | 0.782 | 0.782 | 0.781 |
+| Companies (50+) | 7 | 49 | 113 |
+
+The distribution converged by 10K: the 10K-to-50K shift was less than 0.5 percentage points across all categories. Mean confidence held at 0.78 regardless of sample size, confirming the model's behavior is stable.
+
+The real gain is company-level granularity. At 50K, 113 companies had 50+ tweets each. Negative sentiment ranged from 3.5% (likely misclassified support accounts) to 87.3%, with DunkinDonuts (82.7%) and ComcastCares (73.8%) at the high end. SouthwestAir (34.6%) and AldiUK (34.8%) showed notably lower negativity. This spectrum, invisible in 93 rows, is the primary analytical value of scaling up.
+
+Throughput scaled linearly: 195 seconds for 10K, 982 seconds for 50K. Estimated time for the full 1.5M inbound corpus: ~504 minutes on GPU. Infrastructure is a real constraint at this scale, but GPU batching makes it tractable.
 
 Next: explainability with SHAP and LIME, and the same question about what these tools reveal versus what requires human interpretation.
