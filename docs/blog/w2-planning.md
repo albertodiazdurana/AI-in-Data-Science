@@ -8,7 +8,7 @@ When the assignment said "automate as much of the machine learning workflow as p
 
 ## The Setup
 
-The task: predict house sale prices using the Ames Housing dataset (~1,500 homes, 80+ features). The twist: use automation tools at every stage — automated EDA, automated feature engineering, automated model training — and reflect on what automation actually delivers.
+The task: predict house sale prices using the Ames Housing dataset (~2,900 homes, 80+ features). The twist: use automation tools at every stage — automated EDA, automated feature engineering, automated model training — and reflect on what automation actually delivers.
 
 The tool stack from the course: YData Profiling and SweetViz for EDA, Featuretools and Autofeat for feature engineering, H2O AutoML and PyCaret for modeling. That is six tools for one project. The question was not *can* I use all of them, but *should* I?
 
@@ -30,6 +30,17 @@ The project description asked for automated modeling, not a comparison. But addi
 
 1. **Tool fit matters more than tool count.** Featuretools on flat data is a mismatch, not a demonstration of skill.
 2. **Defaults can be dangerous.** Autofeat's default settings would have consumed my entire time budget on feature generation alone.
-3. **The plan is the first deliverable.** A 20-cell notebook outline with tool rationale is more valuable than a 50-cell notebook that stumbles through tool selection in real time.
+3. **Plan at the right abstraction level.** A phase-based plan with objectives is more useful than a 20-cell outline that pre-commits to implementation details before the data has been explored. The specifics should emerge from execution, not precede it.
 
 Next: the notebook itself — from data loading to reflections.
+
+---
+
+## Part 2 TODO (deferred from session 2)
+
+Material to cover:
+- Automated EDA generated too much output; focused cells were more actionable ("take a bite" on tool output)
+- Autofeat added R²=+0.004, PyCaret model selection added +0.12 (tool selection > tool quantity)
+- Real numbers: baseline R²=0.80, PyCaret GBR tuned R²=0.93
+- The plan changed mid-session: cell-by-cell v2 was replaced by phase-based v3 because data should drive decisions
+- Pre-generation briefs: findings ≠ implementation approach
